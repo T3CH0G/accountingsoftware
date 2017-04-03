@@ -4,6 +4,13 @@
 
 @include('partials.alerts.errors')
 
+@if (Auth::guest())
+<hr>
+<h1> Please login </h1>
+<hr>
+
+@else
+
 <h1> Quotations </h1>
 <hr>
 <body>
@@ -28,5 +35,5 @@
 <hr>
 @endforeach
 </body>
-
+@endif
 @endsection

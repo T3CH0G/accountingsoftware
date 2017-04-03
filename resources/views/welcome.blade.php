@@ -81,13 +81,19 @@
                 <div class="title m-b-md">
                     Accounts
                 </div>
+@if (Auth::guest())
+<hr>
+<h1> Please login to enjoy functions</h1>
+<hr>
 
+@else
                 <div class="links">
                     <a href="http://local.account.com/clients/create">Create new Client</a>
                     <a href="http://local.account.com/quotations/create">Create new Quotation</a>
                     <a href="http://local.account.com/clients">See All Clients</a>
                     <a href="http://local.account.com/quotations">See All Quotations</a>
                 </div>
+@endif
             </div>
         </div>
     </body>

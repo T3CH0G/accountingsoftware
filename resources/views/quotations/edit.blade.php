@@ -2,6 +2,12 @@
 
 @section('content')
 
+@if (Auth::guest())
+<hr>
+<h1> Please login </h1>
+<hr>
+
+@else
 <h1>Editing "{{ $quotation->content }}"</h1>
 <p class="lead">Edit and save this quotation below, or <a href="{{ route('quotations.index') }}">go back to all quotations.</a></p>
 <hr>
@@ -41,5 +47,5 @@
 {!! Form::submit('Update quotation', ['class' => 'btn btn-primary']) !!}
 
 {!! Form::close() !!}
-
+@endif
 @stop

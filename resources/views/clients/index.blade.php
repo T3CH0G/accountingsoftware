@@ -1,8 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+@if (Auth::guest())
+<hr>
+<h1> Please login </h1>
+<hr>
+
+@else
 
 @foreach($clients as $client)
+
+
 
 <h2> Clients </h2>
 <hr>
@@ -14,5 +22,5 @@
     </p>
     <hr>
 @endforeach
-
+@endif
 @stop

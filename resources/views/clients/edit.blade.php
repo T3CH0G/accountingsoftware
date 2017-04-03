@@ -2,6 +2,13 @@
 
 @section('content')
 
+@if (Auth::guest())
+<hr>
+<h1> Please login </h1>
+<hr>
+
+@else
+
 <h1>Editing "{{ $client->content }}"</h1>
 <p class="lead">Edit and save this client below, or <a href="{{ route('clients.index') }}">go back to all clients.</a></p>
 <hr>
@@ -29,5 +36,5 @@
 {!! Form::submit('Update client', ['class' => 'btn btn-primary']) !!}
 
 {!! Form::close() !!}
-
+@endif
 @stop

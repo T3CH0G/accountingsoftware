@@ -4,6 +4,13 @@
 
 @include('partials.alerts.errors')
 
+@if (Auth::guest())
+<hr>
+<h1> Please login </h1>
+<hr>
+
+@else
+
 <h1>Add a New Quotation</h1>
 <p class="lead">Add to your quotation list below.</p>
 {!! Form::open([
@@ -36,5 +43,5 @@
 
 {!! Form::close() !!}
 <hr>
-
+@endif
 @stop

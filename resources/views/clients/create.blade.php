@@ -4,6 +4,13 @@
 
 @include('partials.alerts.errors')
 
+@if (Auth::guest())
+<hr>
+<h1> Please login </h1>
+<hr>
+
+@else
+
 <h1>Add a New client</h1>
 <p class="lead">Add to your client list below.</p>
 {!! Form::open([
@@ -25,5 +32,5 @@
 
 {!! Form::close() !!}
 <hr>
-
+@endif
 @stop
