@@ -105,7 +105,13 @@ class QuotationsController extends Controller
     public function edit($id)
     {
         $Quotations = Quotation::findOrFail($id);
-        return view('quotations.edit')->withQuotation($Quotations);
+        $clients = Client::all();
+        $q = [];
+        foreach ($clients as $client)
+            {
+                array_push($q,[($client->id)=>($client->name)]);
+            }
+        return view('quotations.edit',compact('q'))->withQuotation($Quotations);
     }
 
     /**
