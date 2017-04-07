@@ -43,8 +43,8 @@ class QuotationsController extends Controller
     $this->validate($request, [
         'client_id' => 'required',
         'quotation_id' => 'required',
-        'item' => 'required',
         'subject' => 'required',
+        'item' => 'required',
         'description' => 'required',
         'cost' => 'required',
         'quantity' => 'required',
@@ -64,6 +64,10 @@ class QuotationsController extends Controller
 
     $cid ="0"."$client_id";
     $input = $request->all();
+    $input['item']=serialize($input['item']);
+    $input['description']=serialize($input['description']);
+    $input['cost']=serialize($input['cost']);
+    $input['quantity']=serialize($input['quantity']);
 
         if($client_id < 10)
         {
@@ -75,7 +79,6 @@ class QuotationsController extends Controller
         }
 
     Quotation::create($input);
-    $jid;
 
     Session::flash('flash_message', 'quotation successfully added!');
 
@@ -90,10 +93,15 @@ class QuotationsController extends Controller
      */
     public function show($id)
     {
-        $Quotation = Quotation::findOrFail($id);
-        $cid=$Quotation->client_id;
+        $quotation = Quotation::findOrFail($id);
+        $cid=$quotation->client_id;
         $client=Client::findOrFail($cid);
-        return view('quotations.show')->withQuotation($Quotation)->withClient($client);
+        $quotation['item']=unserialize($quotation['item']);
+        $quotation['description']=unserialize($quotation['description']);
+        $quotation['cost']=unserialize($quotation['cost']);
+        $quotation['quantity']=unserialize($quotation['quantity']);
+        $number=count($quotation['item']);
+        return view('quotations.show', compact('number'))->withQuotation($quotation)->withClient($client);
     }
 
     /**
@@ -104,14 +112,19 @@ class QuotationsController extends Controller
      */
     public function edit($id)
     {
-        $Quotations = Quotation::findOrFail($id);
+        $quotation = Quotation::findOrFail($id);
         $clients = Client::all();
         $q = [];
         foreach ($clients as $client)
             {
                 array_push($q,[($client->id)=>($client->name)]);
             }
-        return view('quotations.edit',compact('q'))->withQuotation($Quotations);
+        $quotation['item']=unserialize($quotation['item']);
+        $quotation['description']=unserialize($quotation['description']);
+        $quotation['cost']=unserialize($quotation['cost']);
+        $quotation['quantity']=unserialize($quotation['quantity']);
+        $number=count($quotation['item']);
+        return view('quotations.edit',compact('q','number'))->withQuotation($quotation);
     }
 
     /**
@@ -126,16 +139,21 @@ class QuotationsController extends Controller
     $Quotation = Quotation::findOrFail($id);
 
      $this->validate($request, [
-        'client_name' => 'required',
-        'client_company' => 'required',
-        'item' => 'required',
+        'client_id' => 'required',
+        'quotation_id' => 'required',
         'subject' => 'required',
+        'item' => 'required',
         'description' => 'required',
         'cost' => 'required',
-        'quantity' => 'required'
+        'quantity' => 'required',
+        'created_at' => 'required',
     ]);
 
     $input = $request->all();
+    $input['item']=serialize($input['item']);
+    $input['description']=serialize($input['description']);
+    $input['cost']=serialize($input['cost']);
+    $input['quantity']=serialize($input['quantity']);
 
     $Quotation->fill($input)->save();
 

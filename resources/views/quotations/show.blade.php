@@ -4,16 +4,18 @@
 
 <h3> Quotation_id: </h3> 
 <p>{{ $quotation->quotation_id }}</p>
-<h3> Item: </h3> 
-<p>{{ $quotation->item }}</p>
-<h3> Subject: </h3> 
+<h3> Subject </h3>
 <p>{{ $quotation->subject }}</p>
-<h3> Description: </h3> 
-<p>{!! $quotation->description !!}</p>
-<h3> Cost: </h3> 
-<p>{{ $quotation->cost }}</p>
-<h3> Quantity: </h3> 
-<p>{{ $quotation->quantity }}</p>
+<div class="col-md-3">Item:</div>
+<div class="col-md-3">Description:</div>
+<div class="col-md-3">Cost:</div>
+<div class="col-md-3">Quantity:</div>
+@for($i = 0; $i < $number; $i++)
+<div class="col-md-3">{{ $quotation->item[$i] }}</div
+><div class="col-md-3">{{ $quotation->description[$i] }}</div>
+<div class="col-md-3">{{ $quotation->cost[$i]}}</div>
+<div class="col-md-3">{{ $quotation->quantity[$i] }}</div>
+@endfor
 <h3> Date: </h3> 
 <p>{{ $quotation->created_at }}</p>
 

@@ -21,8 +21,8 @@ class CreateQuotationsTable extends Migration
             $newtable->string('subject');
             $newtable->string('item');
             $newtable->text('description');
-            $newtable->decimal('cost',10,2);
-            $newtable->integer('quantity');
+            $newtable->string('cost');
+            $newtable->string('quantity');
             $newtable->integer('discount')->default(0);
             $newtable->timestamps();
         });
