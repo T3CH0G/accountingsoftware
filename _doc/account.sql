@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 05, 2017 at 11:17 AM
+-- Generation Time: Apr 07, 2017 at 09:42 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -42,7 +42,7 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`id`, `name`, `company_name`, `registration_number`, `address`, `job_number`, `created_at`, `updated_at`) VALUES
-(1, 'name1', 'company1', 1234, 'add1', 1, '2017-04-02 23:52:37', '2017-04-02 23:52:37');
+(1, 'name1', 'company1', 1234, 'add1', 10, '2017-04-02 23:52:37', '2017-04-02 23:52:37');
 
 -- --------------------------------------------------------
 
@@ -68,8 +68,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2016_06_01_000003_create_oauth_refresh_tokens_table', 1),
 (6, '2016_06_01_000004_create_oauth_clients_table', 1),
 (7, '2016_06_01_000005_create_oauth_personal_access_clients_table', 1),
-(8, '2017_03_28_051034_create_quotations_table', 1),
-(9, '2017_03_31_031113_create_clients_table', 1);
+(9, '2017_03_31_031113_create_clients_table', 1),
+(10, '2017_03_28_051034_create_quotations_table', 2);
 
 -- --------------------------------------------------------
 
@@ -174,8 +174,8 @@ CREATE TABLE `quotations` (
   `subject` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `item` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cost` decimal(10,2) NOT NULL,
-  `quantity` int(11) NOT NULL,
+  `cost` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quantity` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `discount` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -186,7 +186,7 @@ CREATE TABLE `quotations` (
 --
 
 INSERT INTO `quotations` (`id`, `client_id`, `quotation_id`, `subject`, `item`, `description`, `cost`, `quantity`, `discount`, `created_at`, `updated_at`) VALUES
-(1, 1, 'QUO00070101', 'subject1', 'item1', 'description1', '3.00', 4, 0, '2017-04-02 16:00:00', '2017-04-02 23:53:11');
+(5, 1, 'QUO00070110', 'teststs', 'a:2:{i:0;s:4:\"stst\";i:1;s:5:\"32132\";}', 'a:2:{i:0;s:4:\"stss\";i:1;s:6:\"213`13\";}', 'a:2:{i:0;s:3:\"222\";i:1;s:4:\"3334\";}', 'a:2:{i:0;s:4:\"2222\";i:1;s:3:\"333\";}', 0, '2017-04-06 16:00:00', '2017-04-06 23:39:48');
 
 -- --------------------------------------------------------
 
@@ -294,7 +294,7 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `oauth_clients`
 --
@@ -309,7 +309,7 @@ ALTER TABLE `oauth_personal_access_clients`
 -- AUTO_INCREMENT for table `quotations`
 --
 ALTER TABLE `quotations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `users`
 --
